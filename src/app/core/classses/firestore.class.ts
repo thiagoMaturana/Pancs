@@ -1,6 +1,5 @@
 import { Observable } from 'rxjs';
 import { AngularFirestoreCollection, AngularFirestore, QueryFn } from '@angular/fire/firestore';
-import { ElementSchemaRegistry } from '@angular/compiler';
 
 export abstract class Firestore<T extends { id: string }> {
   protected colletion: AngularFirestoreCollection<T>;

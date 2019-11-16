@@ -9,8 +9,7 @@
 <ion-content>
   <ion-list *ngIf="(plantas$ | async) as plantas">
     <ng-container *ngIf="plantas.length > 0; else noPlantas">
-      <app-planta-item *ngFor="let planta of  plantas" [planta]="planta" (update)="onUpdate($event)"
-        (delete)="onDelete($event)" (done)="onDone($event)"></app-planta-item>
+      <app-planta-item *ngFor="let planta of  plantas" [planta]="planta" (update)="onUpdate($event)"></app-planta-item>
     </ng-container>
     <ng-template #noPlantas>
       <ion-item lines="none"> Sem plantas ainda...</ion-item>

@@ -1,5 +1,7 @@
 export interface Planta {
   id: string;
-  title: string;
-  done: boolean;
+  name: string;
+  nameScientific: string;
+  description: string;
+  photoUrl: string;
 }

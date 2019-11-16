@@ -41,16 +41,20 @@ export class PlantaSavePage implements OnInit {
     this.pageTitle = 'Edit planta';
     this.plantasService.get(plantaId)
       .pipe(take(1))
-      .subscribe(({ title, done }) => {
-        this.plantasForm.get('title').setValue(title);
-        this.plantasForm.get('done').setValue(done);
+      .subscribe(({ name, nameScientific, description, photoUrl }) => {
+        this.plantasForm.get('name').setValue(name);
+        this.plantasForm.get('nameScientific').setValue(nameScientific);
+        this.plantasForm.get('description').setValue(description);
+        this.plantasForm.get('photoUrl').setValue(photoUrl);
       })
   }
 
   private createForm(): void {
     this.plantasForm = this.fb.group({
-      title: ['', [Validators.required, Validators.minLength(3)]],
-      done: [false]
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      nameScientific: ['', [Validators.required, Validators.minLength(3)]],
+      description: ['', [Validators.required]],
+      photoUrl: ['', [Validators.required]]
     })
   }
 

@@ -1,16 +1,11 @@
-<ion-item-sliding #sliding>
-  <ion-item (click)="update.emit(planta)">
-    {{ planta.title }}
-    <ion-toggle slot="end" color="success" [checked]="planta.done"
-      (click)="$event.stopPropagation(); done.emit(planta)"></ion-toggle>
-  </ion-item>
-  <ion-item-options side="start">
-    <ion-item-option color="danger" (click)="delete.emit(planta); sliding.close()">
-      <ion-icon slot="icon-only" name="trash"></ion-icon>
-    </ion-item-option>
+<ion-item (click)="update.emit(planta)" text-center>
 
-    <ion-item-option color="success" (click)="update.emit(planta); sliding.close()">
-      <ion-icon slot="icon-only" name="create"></ion-icon>
-    </ion-item-option>
-  </ion-item-options>
-</ion-item-sliding>
+  <ion-card>
+    <img src="{{ planta.photoUrl }}" />
+    <ion-card-header>
+      <ion-card-title class="title">{{ planta.name }}</ion-card-title>
+      <ion-card-subtitle class="title"> {{ planta.nameScientific }} </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>{{ planta.description }}</ion-card-content>
+  </ion-card>
+</ion-item>

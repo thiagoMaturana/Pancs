@@ -34,29 +34,25 @@ export class PlantasListPage {
     this.navCtrl.navigateForward(['plantas', 'edit', planta.id])
   }
 
+  onDetails(planta: Planta): void {
+    this.navCtrl.navigateForward(['plantas', 'details', planta.name])
+  }
+
   async onDelete(planta: Planta): Promise<void> {
     await this.overlayService.alert({
-      message: `Do u really want delele the plant '${planta.title}'?`,
+      message: `Do u really want delele the plant '${planta.name}'?`,
       buttons: [
         {
           text: 'yes',
           handler: async () => {
             await this.plantasService.delete(planta);
             await this.overlayService.toast({
-              message: `Planta "${planta.title}" deleted!`
+              message: `Planta "${planta.name}" deleted!`
             })
           }
         },
         'No'
       ]
-    });
-  }
-
-  async onDone(planta: Planta): Promise<void> {
-    const plantaToUpdate = { ...planta, done: !planta.done };
-    await this.plantasService.update(plantaToUpdate);
-    await this.overlayService.toast({
-      message: `Planta "${planta.title}" "${plantaToUpdate.done ? 'completed' : 'update'}`
     });
   }
 }

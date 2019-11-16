@@ -10,6 +10,7 @@ import { environment } from './../../environments/environment';
 import { AngularFireModule } from '@angular/fire'
 import { AngularFireAuthModule } from '@angular/fire/auth'
 import { AngularFirestoreModule } from '@angular/fire/firestore'
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [],
@@ -17,7 +18,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore'
     IonicModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireStorageModule
   ],
   exports: [BrowserModule, IonicModule],
   providers: [

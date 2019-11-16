@@ -13,6 +13,11 @@ const routes: Routes = [
         canLoad: [AuthGuard]
       },
       {
+        path: 'details/:name',
+        loadChildren: './pages/planta-details/planta-details.module#PlantaDetailsPageModule',
+        canLoad: [AuthGuard]
+      },
+      {
         path: 'edit/:id',
         loadChildren: './pages/planta-save/planta-save.module#PlantaSavePageModule',
         canLoad: [AuthGuard]
@@ -24,7 +29,8 @@ const routes: Routes = [
       }
     ]
   },
-  { path: 'create', loadChildren: './pages/planta-save/planta-save.module#PlantaSavePageModule' }
+  { path: 'create', loadChildren: './pages/planta-save/planta-save.module#PlantaSavePageModule' },
+  { path: 'planta-details', loadChildren: './pages/planta-details/planta-details.module#PlantaDetailsPageModule' }
 ];
 
 @NgModule({
