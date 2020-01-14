@@ -10,7 +10,6 @@ export class PlantaItemComponent {
 
   @Input() planta: Planta;
 
-  @Output() done = new EventEmitter<Planta>();
   @Output() update = new EventEmitter<Planta>();
   @Output() delete = new EventEmitter<Planta>();
 

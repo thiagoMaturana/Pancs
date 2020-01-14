@@ -3,8 +3,12 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
-  declarations: [PlantaItemComponent],
+  declarations: [
+    PlantaItemComponent,
+  ],
   imports: [SharedModule],
-  exports: [PlantaItemComponent]
+  exports: [
+    PlantaItemComponent,
+  ]
 })
 export class ComponentsModule { }

@@ -1,7 +1,7 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Planta } from '../../models/planta.model';
-import { take } from 'rxjs/operators';
 
 import { PlantasService } from './../../services/plantas.service';
 import { OverlayService } from './../../../core/services/overlay.service';
@@ -13,17 +13,19 @@ import { OverlayService } from './../../../core/services/overlay.service';
 })
 export class PlantaDetailsPage {
 
-  plantas$: Observable<Planta[]>;
+  planta$: Observable<Planta>;
 
   constructor(
     private plantasService: PlantasService,
-    private overlayService: OverlayService
+    private overlayService: OverlayService,
+    private route: ActivatedRoute
   ) { }
 
   async ionViewDidEnter(): Promise<void> {
     const loading = await this.overlayService.loading()
-    this.plantas$ = this.plantasService.getAll();
-    this.plantas$.pipe(take(1)).subscribe(plantas => loading.dismiss())
+    const plantaId = this.route.snapshot.paramMap.get('id');
+    this.planta$ = this.plantasService.get(plantaId);
+    loading.dismiss();
   }
 
 }

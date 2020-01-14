@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { PlantasService } from './../../services/plantas.service';
 import { OverlayService } from './../../../core/services/overlay.service';
 import { take } from 'rxjs/operators';
 
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Planta } from '../../models/planta.model';
 import { NavController } from '@ionic/angular';
 
@@ -35,7 +35,7 @@ export class PlantasListPage {
   }
 
   onDetails(planta: Planta): void {
-    this.navCtrl.navigateForward(['plantas', 'details', planta.name])
+    this.navCtrl.navigateForward(['plantas', 'details', planta.id]);
   }
 
   async onDelete(planta: Planta): Promise<void> {

@@ -1,17 +1,16 @@
-import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-
-import { AuthService } from './../../core/services/auth.service';
+import { Receita } from './../models/receita.model';
 import { Firestore } from 'src/app/core/classses/firestore.class';
-import { Planta } from '../models/planta.model';
+import { Injectable } from '@angular/core';
 import { firestore } from 'firebase';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PlantasService extends Firestore<Planta>{
+export class ReceitasService extends Firestore<Receita>{
 
-  constructor(private authService: AuthService, db: AngularFirestore) {
+  constructor(db: AngularFirestore, private authService: AuthService) {
     super(db);
     this.init();
   }
@@ -20,8 +19,8 @@ export class PlantasService extends Firestore<Planta>{
     this.authService.authState$.subscribe(
       user => {
         if (user) {
-          this.setCollection(`/users/${user.uid}/plantas`, (ref: firestore.CollectionReference) => {
-            return ref.orderBy('name', 'asc');
+          this.setCollection(`/users/${user.uid}/receitas`, (ref: firestore.CollectionReference) => {
+            return ref.orderBy('nome', 'asc');
           });
           return;
         }

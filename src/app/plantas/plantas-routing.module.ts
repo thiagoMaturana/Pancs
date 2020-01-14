@@ -1,7 +1,6 @@
+import { AuthGuard } from './../core/guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-import { AuthGuard } from '../core/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -13,7 +12,7 @@ const routes: Routes = [
         canLoad: [AuthGuard]
       },
       {
-        path: 'details/:name',
+        path: 'details/:id',
         loadChildren: './pages/planta-details/planta-details.module#PlantaDetailsPageModule',
         canLoad: [AuthGuard]
       },
@@ -28,11 +27,9 @@ const routes: Routes = [
         canLoad: [AuthGuard]
       }
     ]
-  },
-  { path: 'create', loadChildren: './pages/planta-save/planta-save.module#PlantaSavePageModule' },
-  { path: 'planta-details', loadChildren: './pages/planta-details/planta-details.module#PlantaDetailsPageModule' }
-];
+  }
 
+];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

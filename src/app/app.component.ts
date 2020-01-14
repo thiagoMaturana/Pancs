@@ -29,7 +29,9 @@ export class AppComponent {
 
     this.pages = [
       { url: '/plantas', direction: 'back', icon: 'leaf', title: 'Plantas' },
-      { url: '/plantas/create', direction: 'forward', icon: 'add', title: 'New Planta' }
+      { url: '/plantas/create', direction: 'forward', icon: 'add', title: 'New Planta' },
+      { url: '/receitas', direction: 'forward', icon: 'pizza', title: 'Receitas' },
+      { url: '/receitas/create', direction: 'forward', icon: 'add', title: 'New Receitas' }
     ];
 
     this.authService.authState$.subscribe(user => this.user = user);

@@ -8,18 +8,18 @@
 
 <ion-content>
 
-  <ion-list *ngIf="(plantas$ | async) as plantas">
-    <ng-container *ngIf="plantas.length > 0; else noPlantas">
-      <app-planta-item *ngFor="let planta of  plantas" [planta]="planta" (update)="onDetails($event)">
-      </app-planta-item>
+  <ion-list *ngIf="(receitas$ | async) as receitas">
+    <ng-container *ngIf="receitas.length > 0; else noReceitas">
+      <app-receita-item *ngFor="let receita of  receitas" [receita]="receita" (update)="onDetails($event)">
+      </app-receita-item>
     </ng-container>
-    <ng-template #noPlantas>
-      <ion-item lines="none"> Sem plantas ainda...</ion-item>
+    <ng-template #noReceitas>
+      <ion-item lines="none"> Sem receitas ainda...</ion-item>
     </ng-template>
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="success" routerLink="/plantas/create" routerDirection="forward">
+    <ion-fab-button color="success" routerLink="/receitas/create" routerDirection="forward">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

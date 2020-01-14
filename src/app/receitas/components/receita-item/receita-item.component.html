@@ -1,0 +1,10 @@
+<ion-item (click)="update.emit(receita)" class="ion-text-center">
+
+  <ion-card>
+    <img src="{{ receita.photoUrl }}" />
+    <ion-card-header>
+      <ion-card-title class="title">{{ receita.nome }}</ion-card-title>
+      <ion-card-subtitle class="title"> {{ receita.tipo }} </ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+</ion-item>

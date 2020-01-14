@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/receitas"></ion-back-button>
+    </ion-buttons>
+    <ion-title> {{ pageTitle }} </ion-title>
+    <app-logout-button slot="end" menu="main-menu"></app-logout-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="receitasForm" (submit)="onSubmit()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked" color="primary">Nome:</ion-label>
+        <ion-input type="text" placeholder="Nome" autofocus="true" inputmode="text" formControlName="nome">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked" color="primary">Ingredientes:</ion-label>
+        <ion-input type="text" placeholder="Ingredientes" autofocus="true" inputmode="text"
+          formControlName="ingredientes">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked" color="primary">Modo de Preparo:</ion-label>
+        <ion-input type="text" placeholder="Modo de Preparo" autofocus="true" inputmode="text"
+          formControlName="modoDePreparo">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked" color="primary">Tipo:</ion-label>
+        <ion-input type="text" placeholder="Tipo" inputmode="text" formControlName="tipo">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked" color="primary">Url da foto:</ion-label>
+        <ion-input type="text" placeholder="Url da foto" inputmode="text" formControlName="photoUrl">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked" color="primary">Observações</ion-label>
+        <ion-textarea autoGrow="true" formControlName="observacao"></ion-textarea>
+      </ion-item>
+
+      <ion-button expand="full" type="submit" color="success" [disabled]="receitasForm.invalid">
+        Save
+      </ion-button>
+
+    </ion-list>
+  </form>
+</ion-content>
