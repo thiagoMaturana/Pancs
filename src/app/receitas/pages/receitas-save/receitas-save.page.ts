@@ -1,7 +1,7 @@
 import { ReceitasService } from './../../services/receitas.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { NavController } from '@ionic/angular';
+import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
+import { NavController, NavParams } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { OverlayService } from 'src/app/core/services/overlay.service';
 import { take } from 'rxjs/operators';
@@ -23,7 +23,16 @@ export class ReceitasSavePage implements OnInit {
     private navCtrl: NavController,
     private route: ActivatedRoute,
     private overlayService: OverlayService
-  ) { }
+  ) {
+    // Define the FormGroup object for the form
+   // (with sub-FormGroup objects for handling
+   // the dynamically generated form input fields)
+   this.receitasForm = this.fb.group({
+      technologies     : this.fb.array([
+       this.initIngredientesFields()
+    ])
+ });
+   }
 
   ngOnInit(): void {
     this.createForm();
@@ -50,6 +59,34 @@ export class ReceitasSavePage implements OnInit {
       })
   }
 
+  /**
+ * Generates a FormGroup object with input field validation rules for
+ * the technologies form object
+ *
+ * @public
+ * @method initIngredientesFields
+ * @return {FormGroup}
+ */
+  initIngredientesFields() : FormGroup
+  {
+    return this.fb.group({
+        name : ['', Validators.required]
+    });
+  }
+
+  /**
+ * Programmatically generates a new technology input field
+ *
+ * @public
+ * @method addNewInputField
+ * @return {none}
+ */
+addNewInputField() : void
+{
+   const control = <FormArray>this.receitasForm.controls.ingredientes;
+   control.push(this.initIngredientesFields());
+}
+
   private createForm(): void {
     this.receitasForm = this.fb.group({
       nome: ['', [Validators.required, Validators.minLength(3)]],
@@ -60,6 +97,33 @@ export class ReceitasSavePage implements OnInit {
       photoUrl: ['', [Validators.required]]
     })
   }
+
+/**
+ * Programmatically removes a recently generated technology input field
+ *
+ * @public
+ * @method removeInputField
+ * @param i    {number}      The position of the object in the array that needs to removed
+ * @return {none}
+ */
+removeInputField(i : number) : void
+{
+   const control = <FormArray>this.receitasForm.controls.ingredientes;
+   control.removeAt(i);
+}
+
+/**
+ * Receive the submitted form data
+ *
+ * @public
+ * @method manage
+ * @param val    {object}      The posted form data
+ * @return {none}
+ */
+manage(val : any) : void
+{
+   console.dir(val);
+}
 
   async onSubmit(): Promise<void> {
     const loading = await this.overlayService.loading({

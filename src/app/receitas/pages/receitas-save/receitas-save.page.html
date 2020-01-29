@@ -24,6 +24,52 @@
         </ion-input>
       </ion-item>
 
+       <!-- Assign a FormGroupName property binding to track
+                 and manage each separate generated input field.
+                 Also iterate through the technologies FormArray to
+                 correctly track/render new input fields against
+                 existing fields -->
+                 <section
+                 [formGroupName]="i"
+                 *ngFor="let tech of form.controls.ingredientes.controls; let i = index">
+                 <ion-item-group>
+                     <ion-item-divider color="light">Name #{{ i + 1 }}</ion-item-divider>
+                    <ion-item>
+                       <ion-label floating>Ingrediente:</ion-label>
+                       <ion-input
+                          type="text"
+                          maxlength="50"
+                          formControlName="name"></ion-input>
+                    </ion-item>
+  
+  
+                    <!-- Allow generated input field to be removed -->
+                    <span
+                       float-right
+                       ion-button
+                       icon-left
+                       clear
+                       *ngIf="form.controls.ingredientes.length > 1"
+                       (click)="removeInputField(i)">
+                       <ion-icon name="close"></ion-icon>
+                       Remove
+                    </span>
+                 </ion-item-group>
+              </section>
+           </div>
+  
+  
+           <!-- Allow new input field to be generated/added -->
+           <span
+              ion-button
+              float-left
+              icon-left
+              clear
+              (click)="addNewInputField()">
+                 <ion-icon name="add"></ion-icon>
+                 Adicionar novo ingrediente
+           </span>
+
       <ion-item>
         <ion-label position="stacked" color="primary">Modo de Preparo:</ion-label>
         <ion-input type="text" placeholder="Modo de Preparo" autofocus="true" inputmode="text"
