@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/receitas"></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="(receita$ | async) as receita" class="ion-text-center"> {{ receita.name }} </ion-title>
+    <app-logout-button slot="end" menu="main-menu"></app-logout-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item *ngIf="(receita$ | async) as receita">
+    <ng-container>
+      {{ receita.nome }}
+      {{ receita.ingredientes }}
+    </ng-container>
+  </ion-item>
+</ion-content>

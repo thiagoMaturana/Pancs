@@ -13,6 +13,16 @@ const routes: Routes = [
         canLoad: [AuthGuard]
       },
       {
+        path: 'details/:id',
+        loadChildren: './pages/receita-details/receita-details.module#ReceitaDetailsPageModule',
+        canLoad: [AuthGuard]
+      },
+      {
+        path: 'edit/:id',
+        loadChildren: './pages/receitas-save/receitas-save.module#ReceitasSavePageModule',
+        canLoad: [AuthGuard]
+      },
+      {
         path: '',
         loadChildren: './pages/receitas-list/receitas-list.module#ReceitasListPageModule',
         canLoad: [AuthGuard]

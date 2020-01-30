@@ -1,6 +1,6 @@
 import { ReceitasService } from './../../services/receitas.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { OverlayService } from 'src/app/core/services/overlay.service';
@@ -53,7 +53,9 @@ export class ReceitasSavePage implements OnInit {
   private createForm(): void {
     this.receitasForm = this.fb.group({
       nome: ['', [Validators.required, Validators.minLength(3)]],
-      ingredientes: ['', [Validators.required, Validators.minLength(3)]],
+      ingredientes: this.fb.array([
+        this.initIngredientes()
+      ]),
       modoDePreparo: ['', [Validators.required]],
       observacao: [''],
       tipo: ['', [Validators.required]],
@@ -61,6 +63,20 @@ export class ReceitasSavePage implements OnInit {
     })
   }
 
+  private initIngredientes(): FormGroup {
+    return this.fb.group({
+      nomeIngrediente: ['', [Validators.required, Validators.maxLength(2)]]
+    })
+  }
+
+  private addIngrediente(): void {
+    const control = <FormArray>this.receitasForm.controls.ingredientes;
+    control.push(this.initIngredientes());
+  }
+  private removeIngrediente(i: number): void {
+    const control = <FormArray>this.receitasForm.controls.ingredientes;
+    control.removeAt(i);
+  }
   async onSubmit(): Promise<void> {
     const loading = await this.overlayService.loading({
       message: 'Saving  . . .'
