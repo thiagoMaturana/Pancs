@@ -16,8 +16,9 @@
         <ion-input type="text" placeholder="Nome" autofocus="true" inputmode="text" formControlName="nome">
         </ion-input>
       </ion-item>
-
+      
       <ion-item>
+<<<<<<< HEAD
         <ion-label position="stacked" color="primary">Ingredientes:</ion-label>
         <ion-input type="array" placeholder="Ingredientes" autofocus="true" inputmode="text"
           formArrayName="ingredientes">
@@ -51,6 +52,49 @@
         <ion-button expand="full" type="submit" color="success" [disabled]="receitasForm.invalid">
           Save
         </ion-button>
+=======
+        <ion-label position="stacked" color="primary">Ingredientes</ion-label>  
+      </ion-item>  
+      <ion-list formArrayName="ingredientes"
+        *ngFor="let ingrediente of receitasForm.get('ingredientes').controls; let i = index;">
+        <ion-item [formGroupName]="i">
+          <ion-input type="text" inputmode="text" formControlName="ingrediente" placeholder="ingrediente"></ion-input>
+          <ion-icon (click)="removeIngrediente(i)" name="close-circle"></ion-icon>
+        </ion-item>       
+      </ion-list>
+
+      <ion-item ion-button icon-left (click)="addIngrediente()">
+            <ion-icon name="add"></ion-icon> Adicionar ingrediente
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked" color="primary">Modo de Preparo:</ion-label>
+        <ion-input type="text" placeholder="Modo de Preparo" autofocus="true" inputmode="text"
+          formControlName="modoDePreparo">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked" color="primary">Tipo:</ion-label>
+        <ion-input type="text" placeholder="Tipo" inputmode="text" formControlName="tipo">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked" color="primary">Url da foto:</ion-label>
+        <ion-input type="text" placeholder="Url da foto" inputmode="text" formControlName="photoUrl">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked" color="primary">Observações</ion-label>
+        <ion-textarea autoGrow="true" formControlName="observacao"></ion-textarea>
+      </ion-item>
+     
+      <ion-button expand="full" type="submit" color="success" [disabled]="receitasForm.invalid">
+        Save
+      </ion-button>
+>>>>>>> testeIngredientes
 
     </ion-list>
   </form>
