@@ -1,10 +1,6 @@
 import { ReceitasService } from './../../services/receitas.service';
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
-=======
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
->>>>>>> testeIngredientes
 import { NavController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { OverlayService } from 'src/app/core/services/overlay.service';
@@ -19,7 +15,7 @@ export class ReceitasSavePage implements OnInit {
 
   receitasForm: FormGroup;
   pageTitle = '. . .';
-  receitaId: string = undefined;  
+  receitaId: string = undefined;
   ingredientes: FormArray;
 
   constructor(
@@ -28,7 +24,7 @@ export class ReceitasSavePage implements OnInit {
     private navCtrl: NavController,
     private route: ActivatedRoute,
     private overlayService: OverlayService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -51,20 +47,14 @@ export class ReceitasSavePage implements OnInit {
         this.receitasForm.get('modoDePreparo').setValue(modoDePreparo);
         this.receitasForm.get('observacao').setValue(observacao);
         this.receitasForm.get('tipo').setValue(tipo);
-        this.receitasForm.get('photoUrl').setValue(photoUrl);        
+        this.receitasForm.get('photoUrl').setValue(photoUrl);
       })
   }
 
   private createForm(): void {
     this.receitasForm = this.fb.group({
       nome: ['', [Validators.required, Validators.minLength(3)]],
-<<<<<<< HEAD
-      ingredientes: this.fb.array([
-        this.initIngredientes()
-      ]),
-=======
-      ingredientes: this.fb.array([ this.createIngrediente() ]),      
->>>>>>> testeIngredientes
+      ingredientes: this.fb.array([this.createIngrediente()]),
       modoDePreparo: ['', [Validators.required]],
       observacao: [''],
       tipo: ['', [Validators.required]],
@@ -72,22 +62,6 @@ export class ReceitasSavePage implements OnInit {
     })
   }
 
-<<<<<<< HEAD
-  private initIngredientes(): FormGroup {
-    return this.fb.group({
-      nomeIngrediente: ['', [Validators.required, Validators.maxLength(2)]]
-    })
-  }
-
-  private addIngrediente(): void {
-    const control = <FormArray>this.receitasForm.controls.ingredientes;
-    control.push(this.initIngredientes());
-  }
-  private removeIngrediente(i: number): void {
-    const control = <FormArray>this.receitasForm.controls.ingredientes;
-    control.removeAt(i);
-  }
-=======
   createIngrediente(): FormGroup {
     return this.fb.group({
       ingrediente: ''
@@ -102,8 +76,7 @@ export class ReceitasSavePage implements OnInit {
     this.ingredientes = this.receitasForm.get('ingredientes') as FormArray;
     this.ingredientes.removeAt(i);
   }
-  
->>>>>>> testeIngredientes
+
   async onSubmit(): Promise<void> {
     const loading = await this.overlayService.loading({
       message: 'Saving  . . .'
@@ -125,4 +98,3 @@ export class ReceitasSavePage implements OnInit {
     }
   }
 }
-
