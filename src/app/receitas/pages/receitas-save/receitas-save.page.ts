@@ -66,6 +66,7 @@ export class ReceitasSavePage implements OnInit {
     return this.fb.group({
       ingrediente: ''
     });
+    console.log("Oiii")
   }
 
   private addIngrediente(): void {
