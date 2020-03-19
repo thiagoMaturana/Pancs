@@ -20,7 +20,7 @@ export class PlantasService extends Firestore<Planta>{
     this.authService.authState$.subscribe(
       user => {
         if (user) {
-          this.setCollection(`/users/${user.uid}/plantas`, (ref: firestore.CollectionReference) => {
+          this.setCollection(`/plantas`, (ref: firestore.CollectionReference) => {
             return ref.orderBy('name', 'asc');
           });
           return;

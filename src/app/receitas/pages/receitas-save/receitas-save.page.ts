@@ -64,9 +64,8 @@ export class ReceitasSavePage implements OnInit {
 
   createIngrediente(): FormGroup {
     return this.fb.group({
-      ingrediente: ''
+      ingrediente: ['', [Validators.minLength(2), Validators.required]]
     });
-    console.log("Oiii")
   }
 
   private addIngrediente(): void {

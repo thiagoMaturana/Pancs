@@ -23,7 +23,8 @@
       <ion-list formArrayName="ingredientes"
         *ngFor="let ingrediente of receitasForm.get('ingredientes').controls; let i = index;">
         <ion-item [formGroupName]="i">
-          <ion-input type="text" inputmode="text" formControlName="ingrediente" placeholder="ingrediente"></ion-input>
+          <ion-input type="text" inputmode="text" formControlName="ingrediente" placeholder="ingrediente" required>
+          </ion-input>
           <ion-icon (click)="removeIngrediente(i)" name="close-circle"></ion-icon>
         </ion-item>
       </ion-list>
