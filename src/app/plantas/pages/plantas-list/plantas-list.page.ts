@@ -20,8 +20,10 @@ export class PlantasListPage {
     private overlayService: OverlayService) { }
 
   searchAction(searchItem: any) {
-    const item = searchItem.target.value.toLowerCase();
-    console.log(item);
+    const filtro = searchItem.target.value;
+
+    this.plantas$ = this.plantasService.findBy(filtro);
+    this.plantas$.pipe(take(1)).subscribe(plantas => console.log(filtro));
   }
 
   async ionViewDidEnter(): Promise<void> {

@@ -23,8 +23,12 @@ export class AuthGuard {
     return this.checkAuthState(url).pipe(take(1));
   }
 
+  // Retorna um booleano que informa o se o usuário está autenticado ou não
   private checkAuthState(redirect: string): Observable<boolean> {
+    /* Somente o método isAutenticated seria necessário(pois o mesmo já retorna um Observable<boolean> ), mas precisamos bloquear o usuário caso ele não esteja autenticado
+    O pipe é o método usado para observable  */
     return this.authService.isAuthenticated.pipe(
+      //Tap é um operador do rxjs: é uma função que não manipula ou muda o dado de qualquer jeito, mas podemos usar para enviar alguma coisa. Você pode fazer o que quiser com o dado, mas quando sai da função o dado volta ao estado dele antes da função;
       tap(is => {
         if (!is) {
           this.router.navigate(['/login'], {

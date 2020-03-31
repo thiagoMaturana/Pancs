@@ -5,6 +5,7 @@ import { AuthService } from './../../core/services/auth.service';
 import { Firestore } from 'src/app/core/classses/firestore.class';
 import { Planta } from '../models/planta.model';
 import { firestore } from 'firebase';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +29,20 @@ export class PlantasService extends Firestore<Planta>{
         this.setCollection(null);
       }
     )
+  }
+  findBy(filter: string): Observable<Planta[]> {
+    filter = filter.toLowerCase();
+    let plantas = [];
+
+    this.colletion.valueChanges().forEach(lista =>
+      lista.forEach(planta => {
+        if (planta.name.toLowerCase().includes(filter)) {
+          plantas.push(planta);
+        } else if (planta.nameScientific.toLowerCase().includes(filter)) {
+          plantas.push(planta);
+        }
+      }));
+
+    return this.convert<Planta>(plantas);
   }
 }

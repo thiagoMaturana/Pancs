@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { AngularFirestoreCollection, AngularFirestore, QueryFn } from '@angular/fire/firestore';
 
 export abstract class Firestore<T extends { id: string }> {
@@ -36,6 +36,10 @@ export abstract class Firestore<T extends { id: string }> {
 
   delete(item: T): Promise<void> {
     return this.colletion.doc<T>(item.id).delete();
+  }
+
+  convert<T>(array: Array<T>): Observable<Array<T>> {
+    return of(array);
   }
 
 }
