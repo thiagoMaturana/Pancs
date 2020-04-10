@@ -10,7 +10,7 @@
 
     <ion-content>
       <ion-list>
-        <ion-list-header *ngIf="user">{{ user.displayName }}</ion-list-header>
+        <ion-list-header *ngIf="user">{{ user.displayName }} - {{user.email}} - {{user.uid}}</ion-list-header>
         <ion-menu-toggle autoHide="false">
           <ion-item button *ngFor="let page of pages" [routerLink]="page.url" [routerDirection]="page.direction">
             <ion-icon slot="start" [name]=page.icon></ion-icon>
