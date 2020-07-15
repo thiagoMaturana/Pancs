@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <app-menu-toggle slot="start" menu="main-menu"></app-menu-toggle>
+    <ion-searchbar showCancelButton="always" (ionInput)="searchAction($event)"></ion-searchbar>
+    <app-logout-button slot="end" menu="main-menu"></app-logout-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list *ngIf="(receitas$ | async) as receitas">
+    <ng-container *ngIf="receitas.length > 0; else noReceitas">
+      <app-receita-item *ngFor="let receita of  receitas" [receita]="receita" (update)="onDetails($event)">
+      </app-receita-item>
+    </ng-container>
+    <ng-template #noReceitas>
+      <ion-item lines="none"> Sem receitas ainda...</ion-item>
+    </ng-template>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="success" routerLink="/receitas/create" routerDirection="forward">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

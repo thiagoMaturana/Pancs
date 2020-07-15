@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/plantas"></ion-back-button>
+    </ion-buttons>
+    <ion-title> {{ pageTitle }} </ion-title>
+    <app-logout-button slot="end" menu="main-menu"></app-logout-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="plantasForm" (submit)="onSubmit()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked" color="primary">Nome popular:</ion-label>
+        <ion-input type="text" placeholder="Nome" autofocus="true" inputmode="text" formControlName="name">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked" color="primary">Nome científico:</ion-label>
+        <ion-input type="text" placeholder="Nome cientifico" inputmode="text" formControlName="nameScientific">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked" color="primary">Url da foto:</ion-label>
+        <ion-input type="text" placeholder="Url da foto" inputmode="text" formControlName="photoUrl">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked" color="primary">Descrição</ion-label>
+        <ion-textarea autoGrow="true" formControlName="description"></ion-textarea>
+      </ion-item>
+
+      <ion-button expand="full" type="submit" color="success" [disabled]="plantasForm.invalid">
+        Save
+      </ion-button>
+
+    </ion-list>
+  </form>
+</ion-content>
