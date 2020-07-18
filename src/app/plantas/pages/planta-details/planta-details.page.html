@@ -3,15 +3,53 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/receitas"></ion-back-button>
     </ion-buttons>
-    <ion-title *ngIf="(planta$ | async) as planta" class="ion-text-center"> {{ planta.name }} </ion-title>
+    <ion-title *ngIf="(planta$ | async) as planta" class="ion-text-center"> {{ planta.nome }} </ion-title>
     <app-logout-button slot="end" menu="main-menu"></app-logout-button>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-item *ngIf="(planta$ | async) as planta">
-    <ng-container>
-      {{ planta.name }}
-    </ng-container>
-  </ion-item>
+<ion-content *ngIf="(planta$ | async) as planta">
+  <img src="{{planta.foto}}" class="ion-text-center">
+  <ion-segment (ionChange) = "segmentChanged($event)" value="descricao" color="success">
+    <ion-segment-button value="descricao" checked>
+      <ion-label>Descrição</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="propriedades">
+      <ion-label>Propriedade e Usos</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="cultivo">
+      <ion-label>Cultivo</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-grid>
+    <ion-row *ngIf="segmentPage === 'descricao'">
+      <ion-segment (ionChange)="segmentDescricaoChanged($event)" value="caracteristicas" color="success">
+        <ion-segment-button value="caracteristicas">
+          <ion-label>Características</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="classificacao">
+          <ion-label>Classificação</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-row>
+
+    <ion-row *ngIf="segmentPage === 'propriedades'">
+      <p class="ion-padding ion-text-justify"> {{planta.propriedades}} </p>
+    </ion-row>
+
+    <ion-row *ngIf="segmentPage === 'cultivo'">
+      <p class="ion-padding ion-text-justify"> {{planta.cultivo}} </p>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row *ngIf="segmentDescricaoPage === 'caracteristicas' && segmentPage === 'descricao'" >
+      <p class="ion-padding ion-text-justify"> {{planta.caracteristicas}} </p>
+    </ion-row>
+    <ion-row *ngIf="segmentDescricaoPage === 'classificacao' && segmentPage === 'descricao'">
+      <p class="ion-padding ion-text-justify"> {{planta.classificacao}} </p>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>

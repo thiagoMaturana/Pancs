@@ -14,6 +14,8 @@ import { OverlayService } from './../../../core/services/overlay.service';
 export class PlantaDetailsPage {
 
   planta$: Observable<Planta>;
+  segmentPage = "descricao";
+  segmentDescricaoPage = "caracteristicas";
 
   constructor(
     private plantasService: PlantasService,
@@ -28,4 +30,14 @@ export class PlantaDetailsPage {
     loading.dismiss();
   }
 
+  segmentChanged(ev: any) {
+    console.log(ev.detail);
+    this.segmentPage = ev.detail.value;
+    this.segmentDescricaoPage = "caracteristicas"; //meia boca, tentar melhorar. Quando vamos para outro segmento diferente da Descrição, e antes vamos para a Classificação, e quando voltamos o segmento vai para o padrão que é a Caracteristica, mas o conteúdo é da Classificação.
+  }
+
+  segmentDescricaoChanged(ev: any) {
+    console.log(ev.detail);
+    this.segmentDescricaoPage = ev.detail.value;
+  }
 }

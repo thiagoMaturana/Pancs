@@ -1,11 +1,10 @@
 <ion-item (click)="update.emit(planta)" class="ion-text-center">
 
   <ion-card>
-    <img src="{{ planta.photoUrl }}" />
+    <img src="{{ planta.foto }}" />
     <ion-card-header>
-      <ion-card-title class="title">{{ planta.name }}</ion-card-title>
-      <ion-card-subtitle class="title"> {{ planta.nameScientific }} </ion-card-subtitle>
+      <ion-card-title class="title">{{ planta.nome }}</ion-card-title>
+      <ion-card-subtitle class="title"> {{ planta.nomeCientifico }} </ion-card-subtitle>
     </ion-card-header>
-    <ion-card-content>{{ planta.description }}</ion-card-content>
   </ion-card>
 </ion-item>

@@ -13,25 +13,45 @@
     <ion-list>
       <ion-item>
         <ion-label position="stacked" color="primary">Nome popular:</ion-label>
-        <ion-input type="text" placeholder="Nome" autofocus="true" inputmode="text" formControlName="name">
+        <ion-input type="text" placeholder="Nome" autofocus="true" inputmode="text" formControlName="nome">
         </ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked" color="primary">Nome científico:</ion-label>
-        <ion-input type="text" placeholder="Nome cientifico" inputmode="text" formControlName="nameScientific">
+        <ion-input type="text" placeholder="Nome cientifico" inputmode="text" formControlName="nomeCientifico">
         </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked" color="primary">Caracteristicas</ion-label>
+        <ion-textarea autoGrow="true" formControlName="caracteristicas"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked" color="primary">Classificacao</ion-label>
+        <ion-textarea autoGrow="true" formControlName="classificacao"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked" color="primary">Propriedades</ion-label>
+        <ion-textarea autoGrow="true" formControlName="propriedades"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked" color="primary">Avisos</ion-label>
+        <ion-textarea autoGrow="true" formControlName="avisos"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked" color="primary">Cultivo</ion-label>
+        <ion-textarea autoGrow="true" formControlName="cultivo"></ion-textarea>
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked" color="primary">Url da foto:</ion-label>
-        <ion-input type="text" placeholder="Url da foto" inputmode="text" formControlName="photoUrl">
+        <ion-input type="text" placeholder="Url da foto" inputmode="text" formControlName="foto">
         </ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="stacked" color="primary">Descrição</ion-label>
-        <ion-textarea autoGrow="true" formControlName="description"></ion-textarea>
       </ion-item>
 
       <ion-button expand="full" type="submit" color="success" [disabled]="plantasForm.invalid">

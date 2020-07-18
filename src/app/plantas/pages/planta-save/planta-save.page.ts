@@ -41,20 +41,28 @@ export class PlantaSavePage implements OnInit {
     this.pageTitle = 'Edit planta';
     this.plantasService.get(plantaId)
       .pipe(take(1))
-      .subscribe(({ name, nameScientific, description, photoUrl }) => {
-        this.plantasForm.get('name').setValue(name);
-        this.plantasForm.get('nameScientific').setValue(nameScientific);
-        this.plantasForm.get('description').setValue(description);
-        this.plantasForm.get('photoUrl').setValue(photoUrl);
+      .subscribe(({ nome, nomeCientifico, caracteristicas, classificacao, propriedades, avisos, cultivo, foto }) => {
+        this.plantasForm.get('nome').setValue(nome);
+        this.plantasForm.get('nomeCientifico').setValue(nomeCientifico);
+        this.plantasForm.get('caracteristicas').setValue(caracteristicas);
+        this.plantasForm.get('classificacao').setValue(classificacao);
+        this.plantasForm.get('propriedades').setValue(propriedades);
+        this.plantasForm.get('avisos').setValue(avisos);
+        this.plantasForm.get('cultivo').setValue(cultivo);
+        this.plantasForm.get('foto').setValue(foto);
       })
   }
 
   private createForm(): void {
     this.plantasForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      nameScientific: ['', [Validators.required, Validators.minLength(3)]],
-      description: ['', [Validators.required]],
-      photoUrl: ['', [Validators.required]]
+      nome: ['', [Validators.required, Validators.minLength(3)]],
+      nomeCientifico: ['', [Validators.required, Validators.minLength(3)]],
+      caracteristicas: ['', [Validators.required, Validators.minLength(3)]],
+      classificacao: ['', [Validators.required, Validators.minLength(3)]],
+      propriedades: ['', [Validators.required]],
+      avisos: [''],
+      cultivo: [''],
+      foto: ['', [Validators.required]]
     })
   }
 

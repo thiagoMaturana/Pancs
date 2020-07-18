@@ -42,14 +42,14 @@ export class PlantasListPage {
 
   async onDelete(planta: Planta): Promise<void> {
     await this.overlayService.alert({
-      message: `Do u really want delele the plant '${planta.name}'?`,
+      message: `Do u really want delele the plant '${planta.nome}'?`,
       buttons: [
         {
           text: 'yes',
           handler: async () => {
             await this.plantasService.delete(planta);
             await this.overlayService.toast({
-              message: `Planta "${planta.name}" deleted!`
+              message: `Planta "${planta.nome}" deleted!`
             })
           }
         },

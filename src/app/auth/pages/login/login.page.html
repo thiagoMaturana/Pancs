@@ -2,8 +2,8 @@
   <ion-grid>
     <ion-row justify-content-center>
       <ion-col size-sm="8" size-md="4" size-lg="4" size-xl="4">
-        <h1 text-center>
-          <ion-icon name="done-all" color="success" class="icon-7em"></ion-icon>
+        <h1 style="text-align: center;">
+          <ion-icon name="flower-outline" color="success" class="icon-7em"></ion-icon>
         </h1>
 
         <form [formGroup]="authForm" (submit)="onSubmit(authProviders.Email )">
@@ -28,7 +28,7 @@
           </ion-item>
 
           <ion-item>
-            <ion-icon slot="start" name="lock" color="success"></ion-icon>
+            <ion-icon slot="start" name="lock-closed" color="success"></ion-icon>
             <ion-input type="password" formControlName="password" placeholder="Password"></ion-input>
             <ion-note slot="end" color="danger" *ngIf="password.dirty && password.hasError('required')">Required
             </ion-note>

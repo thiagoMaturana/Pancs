@@ -1,7 +1,11 @@
 export interface Planta {
   id: string;
-  name: string;
-  nameScientific: string;
-  description: string;
-  photoUrl: string;
+  nome: string;
+  nomeCientifico: string;
+  caracteristicas: string;
+  classificacao: string;
+  propriedades: string;
+  avisos: string;
+  cultivo: string;
+  foto: string;
 }

@@ -22,7 +22,7 @@ export class PlantasService extends Firestore<Planta>{
       user => {
         if (user) {
           this.setCollection(`/plantas`, (ref: firestore.CollectionReference) => {
-            return ref.orderBy('name', 'asc');
+            return ref.orderBy('nome', 'asc');
           });
           return;
         }
@@ -36,9 +36,9 @@ export class PlantasService extends Firestore<Planta>{
 
     this.colletion.valueChanges().forEach(lista =>
       lista.forEach(planta => {
-        if (planta.name.toLowerCase().includes(filter)) {
+        if (planta.nome.toLowerCase().includes(filter)) {
           plantas.push(planta);
-        } else if (planta.nameScientific.toLowerCase().includes(filter)) {
+        } else if (planta.nomeCientifico.toLowerCase().includes(filter)) {
           plantas.push(planta);
         }
       }));
