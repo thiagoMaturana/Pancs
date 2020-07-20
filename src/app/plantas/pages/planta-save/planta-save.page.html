@@ -23,14 +23,34 @@
         </ion-input>
       </ion-item>
 
+      <ion-item lines="none">
+        <ion-label color="primary" style="font-size: 12px;">Nomes populares:</ion-label>
+      </ion-item>
+        
+      <ion-list formArrayName="nomesPopulares"
+      *ngFor="let nomePopular of plantasForm.get('nomesPopulares').controls; let i = index;">
+        <ion-item [formGroupName]="i" lines="inset">
+          <ion-input formControlName="nomePopular" placeholder="Um nome popular" required>
+          </ion-input>
+          <ion-icon (click)="removeNomePopular(i)" name="close-circle"></ion-icon>
+        </ion-item>
+      </ion-list>
+
+      <ion-item>
+        <ion-tab-button (click)="addNomePopular()">
+          <ion-icon name="add-circle-outline"></ion-icon>
+          <ion-label>Adicionar um novo Nome</ion-label>
+        </ion-tab-button>
+      </ion-item>
+
       <ion-item>
         <ion-label position="stacked" color="primary">Caracteristicas</ion-label>
-        <ion-textarea autoGrow="true" formControlName="caracteristicas"></ion-textarea>
+        <ion-textarea autoGrow="true" formControlName="caracteristicas" placeholder="Tamanho, porte, habitat, folhas (como elas são) e frutos, origem (da onde veio, onde fica mais, raridade)"></ion-textarea>
       </ion-item>
 
       <ion-item>
         <ion-label position="stacked" color="primary">Classificacao</ion-label>
-        <ion-textarea autoGrow="true" formControlName="classificacao"></ion-textarea>
+        <ion-textarea autoGrow="true" formControlName="classificacao" placeholder="Ordem, Família, Genero e Espécie"></ion-textarea>
       </ion-item>
 
       <ion-item>
@@ -60,4 +80,5 @@
 
     </ion-list>
   </form>
+  
 </ion-content>

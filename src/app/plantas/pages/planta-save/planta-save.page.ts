@@ -1,4 +1,4 @@
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
@@ -17,6 +17,7 @@ export class PlantaSavePage implements OnInit {
   plantasForm: FormGroup;
   pageTitle = '. . .';
   plantaId: string = undefined;
+  nomesPopulares: FormArray;
 
   constructor(
     private fb: FormBuilder,
@@ -57,13 +58,29 @@ export class PlantaSavePage implements OnInit {
     this.plantasForm = this.fb.group({
       nome: ['', [Validators.required, Validators.minLength(3)]],
       nomeCientifico: ['', [Validators.required, Validators.minLength(3)]],
-      caracteristicas: ['', [Validators.required, Validators.minLength(3)]],
-      classificacao: ['', [Validators.required, Validators.minLength(3)]],
+      nomesPopulares: this.fb.array([this.createNomePopular()]),
+      caracteristicas: ['', [Validators.required]],
+      classificacao: ['', [Validators.required]],
       propriedades: ['', [Validators.required]],
       avisos: [''],
       cultivo: [''],
       foto: ['', [Validators.required]]
     })
+  }
+
+  createNomePopular(): FormGroup {
+    return this.fb.group({
+      nomePopular: ['', [Validators.minLength(2)]]
+    });
+  }
+
+  private addNomePopular(): void {
+    this.nomesPopulares = this.plantasForm.get('nomesPopulares') as FormArray;
+    this.nomesPopulares.push(this.createNomePopular());
+  }
+  private removeNomePopular(i: number): void {
+    this.nomesPopulares = this.plantasForm.get('nomesPopulares') as FormArray;
+    this.nomesPopulares.removeAt(i);
   }
 
   async onSubmit(): Promise<void> {

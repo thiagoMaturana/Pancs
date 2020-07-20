@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="success">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/receitas"></ion-back-button>
+      <ion-back-button defaultHref="/plantas"></ion-back-button>
     </ion-buttons>
     <ion-title *ngIf="(planta$ | async) as planta" class="ion-text-center"> {{ planta.nome }} </ion-title>
     <app-logout-button slot="end" menu="main-menu"></app-logout-button>
@@ -23,6 +23,14 @@
   </ion-segment>
 
   <ion-grid>
+    <ion-row *ngIf="segmentPage === 'propriedades'">
+      <p class="ion-padding ion-text-justify"> {{planta.propriedades}} </p>
+    </ion-row>
+
+    <ion-row *ngIf="segmentPage === 'cultivo'">
+      <p class="ion-padding ion-text-justify"> {{planta.cultivo}} </p>
+    </ion-row>
+
     <ion-row *ngIf="segmentPage === 'descricao'">
       <ion-segment (ionChange)="segmentDescricaoChanged($event)" value="caracteristicas" color="success">
         <ion-segment-button value="caracteristicas">
@@ -34,16 +42,6 @@
       </ion-segment>
     </ion-row>
 
-    <ion-row *ngIf="segmentPage === 'propriedades'">
-      <p class="ion-padding ion-text-justify"> {{planta.propriedades}} </p>
-    </ion-row>
-
-    <ion-row *ngIf="segmentPage === 'cultivo'">
-      <p class="ion-padding ion-text-justify"> {{planta.cultivo}} </p>
-    </ion-row>
-  </ion-grid>
-
-  <ion-grid>
     <ion-row *ngIf="segmentDescricaoPage === 'caracteristicas' && segmentPage === 'descricao'" >
       <p class="ion-padding ion-text-justify"> {{planta.caracteristicas}} </p>
     </ion-row>
