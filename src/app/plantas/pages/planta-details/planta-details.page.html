@@ -49,31 +49,37 @@
       </ion-segment>
     </ion-row>
 
-    <ion-row *ngIf="segmentDescricaoPage === 'caracteristicas' && segmentPage === 'descricao'" >
-      <ion-grid>
-        <ion-row> 
-          <ion-list *ngFor="let nomePopular of planta.nomesPopulares">
-            <ion-item> //FAZER A LISTA DOS NOMES POPULARES
+    <ion-row *ngIf="segmentDescricaoPage === 'caracteristicas' && segmentPage === 'descricao'" > 
+      <ion-list>
 
-            </ion-item>
-          </ion-list>
-        </ion-row>
-        <ion-row>
+        <ion-item lines="none">
+          <label><b>Nomes populares:</b></label>
+        </ion-item>
+        <ion-item *ngFor="let nomePopular of planta.nomesPopulares" lines="none"> 
+          <label> - {{nomePopular.nomePopular}} </label>
+        </ion-item>
+
+        <ion-item>
           <p class="ion-padding ion-text-justify"> <b>Tamanho:</b> {{planta.tamanho}} </p>
-        </ion-row>
-        <ion-row>
+        </ion-item>
+
+        <ion-item>
           <p class="ion-padding ion-text-justify"> <b>Origem:</b> {{planta.origem}} </p> 
-        </ion-row>
-        <ion-row>
+        </ion-item>
+        
+        <ion-item>
           <p class="ion-padding ion-tex t-justify"> <b>Folha:</b> {{planta.folha}} </p> 
-        </ion-row>
-        <ion-row>
-          <p class="ion-padding ion-text-justify" *ngIf="planta.fruto"> <b>Fruto:</b> {{planta.fruto}} </p>
-        </ion-row>
-        <ion-row>
+        </ion-item>
+        
+        <ion-item *ngIf="planta.fruto">
+          <p class="ion-padding ion-text-justify"> <b>Fruto:</b> {{planta.fruto}} </p>
+        </ion-item> 
+        
+        <ion-item>
           <p class="ion-padding ion-text-justify"> {{planta.caracteristicas}} </p>
-        </ion-row>
-      </ion-grid>
+        </ion-item>
+
+      </ion-list>
     </ion-row>
     <ion-row *ngIf="segmentDescricaoPage === 'classificacao' && segmentPage === 'descricao'">
       <ion-grid>
