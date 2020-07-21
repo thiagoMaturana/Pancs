@@ -9,7 +9,13 @@
 </ion-header>
 
 <ion-content padding>
+
   <form [formGroup]="plantasForm" (submit)="onSubmit()">
+
+    <ion-segment value="nomes" color="success">
+      <ion-segment-button value="nomes"><ion-label>Nomes</ion-label> </ion-segment-button>
+    </ion-segment>
+
     <ion-list>
       <ion-item>
         <ion-label position="stacked" color="primary">Nome popular:</ion-label>
@@ -24,34 +30,77 @@
       </ion-item>
 
       <ion-item lines="none">
-        <ion-label color="primary" style="font-size: 12px;">Nomes populares:</ion-label>
+        <ion-label style="font-size: 12px;" color="primary">Nomes Populares:</ion-label>
       </ion-item>
         
       <ion-list formArrayName="nomesPopulares"
       *ngFor="let nomePopular of plantasForm.get('nomesPopulares').controls; let i = index;">
         <ion-item [formGroupName]="i" lines="inset">
-          <ion-input formControlName="nomePopular" placeholder="Um nome popular" required>
+          <ion-input formControlName="nomePopular" placeholder="Digite um nome popular" required>
           </ion-input>
-          <ion-icon (click)="removeNomePopular(i)" name="close-circle"></ion-icon>
+          <ion-icon (click)="removeNomePopular(i)" color="danger" name="close-circle"></ion-icon>
         </ion-item>
       </ion-list>
 
-      <ion-item>
+      <ion-item lines="full">
         <ion-tab-button (click)="addNomePopular()">
-          <ion-icon name="add-circle-outline"></ion-icon>
-          <ion-label>Adicionar um novo Nome</ion-label>
+          <ion-icon name="add-circle" color="primary"></ion-icon>
+          <ion-label color="primary">Adicionar um novo nome</ion-label>
         </ion-tab-button>
       </ion-item>
 
+      <ion-segment value="caracteristicas" color="success">
+        <ion-segment-button value="caracteristicas"><ion-label>Características</ion-label> </ion-segment-button>
+      </ion-segment>
+
       <ion-item>
-        <ion-label position="stacked" color="primary">Caracteristicas</ion-label>
-        <ion-textarea autoGrow="true" formControlName="caracteristicas" placeholder="Tamanho, porte, habitat, folhas (como elas são) e frutos, origem (da onde veio, onde fica mais, raridade)"></ion-textarea>
+        <ion-label position="stacked" color="primary">Folha</ion-label>
+        <ion-textarea autoGrow="true" formControlName="folha" placeholder="Como é a folha da planta"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked" color="primary">Fruto</ion-label>
+        <ion-textarea autoGrow="true" formControlName="fruto" placeholder="Como é o fruto da planta, caso tenha"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked" color="primary">Tamanho</ion-label>
+        <ion-textarea autoGrow="true" formControlName="tamanho" placeholder="Qual o tamanho médio da planta"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked" color="primary">Origem</ion-label>
+        <ion-textarea autoGrow="true" formControlName="origem" placeholder="Qual a origem da planta"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked" color="primary">Características</ion-label>
+        <ion-textarea autoGrow="true" formControlName="caracteristicas" placeholder="Digite caracteristicas da planta não listadas"></ion-textarea>
+      </ion-item>
+      
+      <ion-segment value="classificacao" color="success">
+        <ion-segment-button value="classificacao"><ion-label>Classificação</ion-label> </ion-segment-button>
+      </ion-segment>
+
+      <ion-item>
+        <ion-label position="stacked" color="primary">Ordem</ion-label>
+        <ion-input formControlName="ordemPlanta" placeholder="Ordem da planta"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label position="stacked" color="primary">Classificacao</ion-label>
-        <ion-textarea autoGrow="true" formControlName="classificacao" placeholder="Ordem, Família, Genero e Espécie"></ion-textarea>
+        <ion-label position="stacked" color="primary">Familia</ion-label>
+        <ion-input formControlName="familiaPlanta" placeholder="Familia da planta"></ion-input>
       </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked" color="primary">Genero</ion-label>
+        <ion-input formControlName="generoPlanta" placeholder="Genero da planta"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked" color="primary">Especie</ion-label>
+        <ion-input formControlName="especiePlanta" placeholder="Especie da planta"></ion-input>
+      </ion-item>
+
+      <ion-segment value="propriedades" color="success">
+        <ion-segment-button value="propriedades"><ion-label>Propriedades e Usos</ion-label> </ion-segment-button>
+      </ion-segment>
 
       <ion-item>
         <ion-label position="stacked" color="primary">Propriedades</ion-label>
@@ -63,10 +112,18 @@
         <ion-textarea autoGrow="true" formControlName="avisos"></ion-textarea>
       </ion-item>
 
+      <ion-segment value="cultivo" color="success">
+        <ion-segment-button value="cultivo"><ion-label>Cultivo</ion-label> </ion-segment-button>
+      </ion-segment>
+
       <ion-item>
         <ion-label position="stacked" color="primary">Cultivo</ion-label>
         <ion-textarea autoGrow="true" formControlName="cultivo"></ion-textarea>
       </ion-item>
+
+      <ion-segment value="fotos" color="success">
+        <ion-segment-button value="fotos"><ion-label>Fotos</ion-label> </ion-segment-button>
+      </ion-segment>
 
       <ion-item>
         <ion-label position="stacked" color="primary">Url da foto:</ion-label>

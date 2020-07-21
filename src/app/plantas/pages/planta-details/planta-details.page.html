@@ -23,8 +23,15 @@
   </ion-segment>
 
   <ion-grid>
-    <ion-row *ngIf="segmentPage === 'propriedades'">
-      <p class="ion-padding ion-text-justify"> {{planta.propriedades}} </p>
+    <ion-row *ngIf="segmentPage === 'propriedades'  ">
+      <ion-grid>
+        <ion-row>
+          <p class="ion-padding ion-text-justify"> {{planta.propriedades}} </p>
+        </ion-row>
+        <ion-row>
+          <p class="ion-padding ion-text-justify" *ngIf="planta.avisos"> <b>Avisos:</b> {{planta.avisos}} </p>
+        </ion-row>
+      </ion-grid>
     </ion-row>
 
     <ion-row *ngIf="segmentPage === 'cultivo'">
@@ -43,10 +50,46 @@
     </ion-row>
 
     <ion-row *ngIf="segmentDescricaoPage === 'caracteristicas' && segmentPage === 'descricao'" >
-      <p class="ion-padding ion-text-justify"> {{planta.caracteristicas}} </p>
+      <ion-grid>
+        <ion-row> 
+          <ion-list *ngFor="let nomePopular of planta.nomesPopulares">
+            <ion-item> //FAZER A LISTA DOS NOMES POPULARES
+
+            </ion-item>
+          </ion-list>
+        </ion-row>
+        <ion-row>
+          <p class="ion-padding ion-text-justify"> <b>Tamanho:</b> {{planta.tamanho}} </p>
+        </ion-row>
+        <ion-row>
+          <p class="ion-padding ion-text-justify"> <b>Origem:</b> {{planta.origem}} </p> 
+        </ion-row>
+        <ion-row>
+          <p class="ion-padding ion-tex t-justify"> <b>Folha:</b> {{planta.folha}} </p> 
+        </ion-row>
+        <ion-row>
+          <p class="ion-padding ion-text-justify" *ngIf="planta.fruto"> <b>Fruto:</b> {{planta.fruto}} </p>
+        </ion-row>
+        <ion-row>
+          <p class="ion-padding ion-text-justify"> {{planta.caracteristicas}} </p>
+        </ion-row>
+      </ion-grid>
     </ion-row>
     <ion-row *ngIf="segmentDescricaoPage === 'classificacao' && segmentPage === 'descricao'">
-      <p class="ion-padding ion-text-justify"> {{planta.classificacao}} </p>
+      <ion-grid>
+        <ion-row>
+          <p class="ion-padding ion-text-justify"> <b>Ordem:</b> {{planta.ordemPlanta}} </p>
+        </ion-row>
+        <ion-row>
+          <p class="ion-padding ion-text-justify"> <b>Família:</b> {{planta.familiaPlanta}} </p> 
+        </ion-row>
+        <ion-row>
+          <p class="ion-padding ion-tex t-justify"> <b>Genero:</b> {{planta.generoPlanta}} </p> 
+        </ion-row>
+        <ion-row>
+          <p class="ion-padding ion-text-justify"> <b>Espécie:</b> {{planta.especiePlanta}} </p>
+        </ion-row>
+      </ion-grid>
     </ion-row>
   </ion-grid>
 

@@ -42,11 +42,18 @@ export class PlantaSavePage implements OnInit {
     this.pageTitle = 'Edit planta';
     this.plantasService.get(plantaId)
       .pipe(take(1))
-      .subscribe(({ nome, nomeCientifico, caracteristicas, classificacao, propriedades, avisos, cultivo, foto }) => {
+      .subscribe(({ nome, nomeCientifico, caracteristicas, folha, fruto, tamanho, origem, ordemPlanta, familiaPlanta, generoPlanta, especiePlanta, propriedades, avisos, cultivo, foto }) => {
         this.plantasForm.get('nome').setValue(nome);
         this.plantasForm.get('nomeCientifico').setValue(nomeCientifico);
         this.plantasForm.get('caracteristicas').setValue(caracteristicas);
-        this.plantasForm.get('classificacao').setValue(classificacao);
+        this.plantasForm.get('folha').setValue(folha);
+        this.plantasForm.get('fruto').setValue(fruto);
+        this.plantasForm.get('tamanho').setValue(tamanho);
+        this.plantasForm.get('origem').setValue(origem);
+        this.plantasForm.get('ordemPlanta').setValue(ordemPlanta);
+        this.plantasForm.get('familiaPlanta').setValue(familiaPlanta);
+        this.plantasForm.get('generoPlanta').setValue(generoPlanta);
+        this.plantasForm.get('especiePlanta').setValue(especiePlanta);
         this.plantasForm.get('propriedades').setValue(propriedades);
         this.plantasForm.get('avisos').setValue(avisos);
         this.plantasForm.get('cultivo').setValue(cultivo);
@@ -60,7 +67,14 @@ export class PlantaSavePage implements OnInit {
       nomeCientifico: ['', [Validators.required, Validators.minLength(3)]],
       nomesPopulares: this.fb.array([this.createNomePopular()]),
       caracteristicas: ['', [Validators.required]],
-      classificacao: ['', [Validators.required]],
+      tamanho: ['', [Validators.required]],
+      folha: ['', [Validators.required]],
+      fruto: [''],
+      origem: [''],
+      ordemPlanta: [''],
+      familiaPlanta: [''],
+      generoPlanta: ['', [Validators.required]],
+      especiePlanta: ['', [Validators.required]],
       propriedades: ['', [Validators.required]],
       avisos: [''],
       cultivo: [''],
