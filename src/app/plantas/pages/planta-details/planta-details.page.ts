@@ -27,7 +27,6 @@ export class PlantaDetailsPage {
     const loading = await this.overlayService.loading()
     const plantaId = this.route.snapshot.paramMap.get('id');
     this.planta$ = this.plantasService.get(plantaId);
-    console.log(this.planta$);
     loading.dismiss();
 
   }

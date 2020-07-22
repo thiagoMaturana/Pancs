@@ -42,7 +42,6 @@ export class PlantaSavePage implements OnInit {
       return;
     }
     this.plantaId = plantaId;
-    console.log(this.plantaId);
     this.pageTitle = 'Edit planta';
     this.plantasService.get(plantaId)
       .pipe(take(1))
