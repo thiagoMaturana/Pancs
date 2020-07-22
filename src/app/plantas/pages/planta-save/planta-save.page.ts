@@ -1,11 +1,13 @@
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 import { OverlayService } from './../../../core/services/overlay.service';
 import { PlantasService } from './../../services/plantas.service';
-import { ActivatedRoute } from '@angular/router';
-import { take } from 'rxjs/operators';
+import { Planta } from '../../models/planta.model';
 
 @Component({
   selector: 'app-planta-save',
@@ -14,8 +16,9 @@ import { take } from 'rxjs/operators';
 })
 export class PlantaSavePage implements OnInit {
 
+  planta$: Observable<Planta>;
   plantasForm: FormGroup;
-  pageTitle = '. . .';
+  pageTitle = '';
   plantaId: string = undefined;
   nomesPopulares: FormArray;
 
@@ -39,6 +42,7 @@ export class PlantaSavePage implements OnInit {
       return;
     }
     this.plantaId = plantaId;
+    console.log(this.plantaId);
     this.pageTitle = 'Edit planta';
     this.plantasService.get(plantaId)
       .pipe(take(1))
@@ -98,6 +102,7 @@ export class PlantaSavePage implements OnInit {
   }
 
   async onSubmit(): Promise<void> {
+    console.log(this.plantasForm);
     const loading = await this.overlayService.loading({
       message: 'Saving  . . .'
     });

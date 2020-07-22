@@ -27,11 +27,12 @@ export class PlantaDetailsPage {
     const loading = await this.overlayService.loading()
     const plantaId = this.route.snapshot.paramMap.get('id');
     this.planta$ = this.plantasService.get(plantaId);
+    console.log(this.planta$);
     loading.dismiss();
+
   }
 
   segmentChanged(ev: any) {
-    console.log(ev.detail);
     this.segmentPage = ev.detail.value;
     this.segmentDescricaoPage = "caracteristicas"; //meia boca, tentar melhorar. Quando vamos para outro segmento diferente da Descrição, e antes vamos para a Classificação, e quando voltamos o segmento vai para o padrão que é a Caracteristica, mas o conteúdo é da Classificação.
   }

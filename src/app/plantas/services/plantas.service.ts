@@ -30,6 +30,7 @@ export class PlantasService extends Firestore<Planta>{
       }
     )
   }
+  
   findBy(filter: string): Observable<Planta[]> {
     filter = filter.toLowerCase();
     let plantas = [];
